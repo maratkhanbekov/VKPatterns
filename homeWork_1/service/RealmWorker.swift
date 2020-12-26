@@ -13,7 +13,9 @@ import RealmSwift
 class RealmWorker {
     
     static let instance = RealmWorker()
-    private init(){}
+    private init(){
+        
+    }
     
     static var configuration = Realm.Configuration(deleteRealmIfMigrationNeeded: true)
     
@@ -24,7 +26,7 @@ class RealmWorker {
             let config = Realm.Configuration(deleteRealmIfMigrationNeeded: needMigrate)
             let realm = try Realm(configuration: config)
             try realm.write {
-                realm.add(items, update: needUpdate)
+                realm.add(items, update: .all)
             }
             return realm
         } catch {
@@ -34,6 +36,7 @@ class RealmWorker {
     }
     
     func getItems<T: Object>(_ type: T.Type, in realm: Realm? = try? Realm(configuration: RealmWorker.configuration)) -> Results<T>? {
+        
         return realm?.objects(type)
     }
     
@@ -57,7 +60,7 @@ class RealmWorker {
                 Realm.Configuration.defaultConfiguration = Realm.Configuration(deleteRealmIfMigrationNeeded: true)
                 let realm = try Realm()
                 realm.beginWrite()
-                realm.add(friends, update: true)
+                realm.add(friends, update: .all)
                 try realm.commitWrite()
                 
             } catch {
@@ -74,7 +77,7 @@ class RealmWorker {
             do {
                 let realm = try Realm()
                 realm.beginWrite()
-                realm.add(groups, update: true)
+                realm.add(groups, update: .all)
                 try realm.commitWrite()
                 
             } catch {
@@ -90,7 +93,7 @@ class RealmWorker {
             do {
                 let realm = try Realm()
                 realm.beginWrite()
-                realm.add(photos, update: true)
+                realm.add(photos, update: .all)
                 try realm.commitWrite()
             } catch {
                 print("Realm getFriends error: \(error)")
