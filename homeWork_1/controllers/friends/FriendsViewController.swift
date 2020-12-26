@@ -96,7 +96,7 @@ class FriendsViewController: UIViewController {
         searchBar.setSubViews(width: self.view.frame.width)
     }
     
-
+ 
 }
 
 extension FriendsViewController {

@@ -107,33 +107,31 @@ class NewsTableViewCell: UITableViewCell {
             .top(0).left(0).right(0).height(0.5)
     }
     
-    
-    func configure(feed: VkFeed) {
+    func configure(feed: NewsViewModel) {
+        labelDate.text = feed.labelDate
+        labelFeedGroupHeader.text = feed.labelFeedGroupHeader
         
-        labelDate.text = feed.getFeedDate()
-        labelFeedGroupHeader.text = feed.sourceName
-        
-        if feed.feedText.count == 0 {
+        if feed.feedTextCount == 0 {
             labelText.pin.height(0)
         } else {
             labelText.pin.height(70)
         }
         
         labelText.text = feed.feedText
-        labelLike.text = feed.getStringFrom(count: feed.countLikes)
-        labelViews.text = feed.getStringFrom(count: feed.countViews)
-        labelShare.text = feed.getStringFrom(count: feed.countReposts)
-        labelComment.text = feed.getStringFrom(count: feed.countComments)
+        labelLike.text = feed.labelLike
+        labelViews.text = feed.labelViews
+        labelShare.text = feed.labelShare
+        labelComment.text = feed.labelComment
         
         imageViewGroup.sd_setImage(with: URL(string: feed.sourceUrl), placeholderImage: UIImage(named: "noPhoto"))
         
-        if feed.attachments.count > 0 {
+        if feed.feedAttachmentsCount > 0 {
             
-            let height = self.frame.width * CGFloat(feed.attachments[0].height) / CGFloat(feed.attachments[0].width)
+            let height = self.frame.width * feed.feedAttachmentsFirstHeight / feed.feedAttachmentsFirstWidth
             
             imageNew.pin.height(height)
             
-            imageNew.sd_setImage(with: URL(string: feed.attachments[0].imageUrl), placeholderImage: UIImage(named: "noPhoto"))
+            imageNew.sd_setImage(with: URL(string: feed.feedAttachmentsFirstImageUrl), placeholderImage: UIImage(named: "noPhoto"))
             
         } else {
             imageNew.pin.height(0)
@@ -142,11 +140,6 @@ class NewsTableViewCell: UITableViewCell {
         setNeedsLayout()
         layoutIfNeeded()
     }
-    
-    
-
-    
-
 }
 
 

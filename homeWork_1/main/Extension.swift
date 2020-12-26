@@ -11,7 +11,7 @@ import UIKit
 class Session {
     
     static let instance = Session()
-    
+        
     private init(){}
     
     var token = ""
@@ -109,11 +109,7 @@ struct GlobalConstants {
 }
 
 
-extension UIColor {
-    struct vkColor {
-        static let main = UIColor.init(red: 65/255, green: 107/255, blue: 158/255, alpha: 1)
-    }
-}
+
 
 extension CGFloat {
     func toRadians() -> CGFloat {

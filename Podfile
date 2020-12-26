@@ -9,7 +9,7 @@ target 'homeWork_1' do
 	
 	pod 'IQKeyboardManagerSwift'
 	pod 'Alamofire'
-	pod 'RealmSwift'
+  pod 'RealmSwift', '~> 4.4.1'
 	pod 'PinLayout'
 	pod 'SwiftyJSON', '~> 4.0'
 	pod 'SDWebImage', '~> 4.0'

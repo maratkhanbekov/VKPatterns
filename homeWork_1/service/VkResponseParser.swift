@@ -157,11 +157,11 @@ class VkResponseParser {
                         photo.text = response["text"].stringValue
                         
                         photo.likes = VkLikes()
-                        photo.likes.count = response["likes"]["count"].intValue
-                        photo.likes.user_likes = response["likes"]["user_likes"].intValue
+                        photo.likes?.count = response["likes"]["count"].intValue
+                        photo.likes?.user_likes = response["likes"]["user_likes"].intValue
                         
                         photo.reposts = VkReposts()
-                        photo.reposts.count = response["reposts"]["count"].intValue
+                        photo.reposts?.count = response["reposts"]["count"].intValue
                         photos.append(photo)
                     } else {
                         print("is not Response")
